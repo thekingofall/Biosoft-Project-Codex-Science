@@ -1,0 +1,7 @@
+interface:
+  display_name: "Codex Science"
+  short_description: "Scientific data, analysis, figures and reproducible reports"
+  brand_color: "#245A64"
+  default_prompt: "Use $codex-science to investigate my scientific question and produce a reproducible analysis with source-linked results."
+policy:
+  allow_implicit_invocation: true

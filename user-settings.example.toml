@@ -1,0 +1,5 @@
+[credentials]
+# Optional. Enter credentials in user-settings.toml on this computer.
+NCBI_EMAIL = ""
+NCBI_API_KEY = ""
+OPENALEX_API_KEY = ""

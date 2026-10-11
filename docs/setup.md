@@ -1,0 +1,50 @@
+# Setup / 安装
+
+## External assets / 外部资源
+
+The adapter is pinned to the prepared Claude Science 0.1.60 layout below. The release directory must be supplied separately; it is not part of this repository. Use materials you are entitled to use. This repository does not include a binary downloader or an extractor.
+
+适配层目前对应 Claude Science 0.1.60 的已整理目录。需要在本机单独提供下列资源；仓库不包含该发行文件、下载器或提取器。
+
+```text
+0.1.60/
+  asset-text-manifest.json
+  extracted/asset-text/mcp-servers/bio-tools/
+    run_server.py
+    lib/
+      mcp_bio/domains.json
+      mcp_bio/deferred.json
+      ... all required package files ...
+```
+
+`asset-text-manifest.json` is a JSON array. Each record has `name` (relative to `extracted/asset-text`), `bytes` and `sha256`. The adapter checks each listed bio-tools file. The manifest is a local integrity record, not an independent publisher signature. Preserve an independently verified original distribution and its notices.
+
+清单字段为 `name`、`bytes`、`sha256`。清单用于核对本地提取文件的完整性，其本身不等同于发行者数字签名。
+
+Set `CODEX_SCIENCE_RELEASE` to the absolute release directory before running the installer. The installer saves this path in the Codex MCP entry for a fresh installation. With no setting, the adapter uses sibling `../0.1.60` for compatibility with the original local layout. Keep the code and external assets at stable paths after registration.
+
+新安装时，安装脚本会把 `CODEX_SCIENCE_RELEASE` 指定的绝对路径写入 MCP 配置。未设置时默认使用相邻的 `../0.1.60`。注册后保持路径稳定。
+
+## Install / 安装
+
+Follow the commands in the README. `install-codex.ps1` registers `science-bio` and links the `codex-science` skill to this checkout. It refuses to overwrite a same-name registration belonging to a different checkout. To intentionally switch checkouts, first review and remove the previous registration with `codex mcp remove science-bio`, and remove its skill link after verifying the target.
+
+安装器核对已有同名入口的归属；同名入口指向其他项目时会停止。切换目录前，请先核对旧配置和技能链接。
+
+Use `user-settings.toml` for local credentials. Runtime environment variables take precedence. `status` reports whether values are configured without printing them. A new MCP process is needed after configuration changes.
+
+## Verify / 验证
+
+```powershell
+.\.venv\Scripts\python.exe -X utf8 .\code\science_mcp.py --check
+.\.venv\Scripts\python.exe -X utf8 .\code\verify_mcp.py
+.\.venv\Scripts\python.exe -X utf8 .\code\test_live.py
+```
+
+The first command verifies files without network access. The second starts MCP and creates the local tool catalog. The third makes read-only requests to Ensembl, UniProt and PubChem. Generated reports stay under ignored `reports/`.
+
+Optional Codex host discovery: run `code/verify_codex_host.py`. If automatic executable discovery fails, set `CODEX_BIN` to the native Codex executable. This test uses the app-server protocol and starts no model task.
+
+## Remove / 移除
+
+Run `codex mcp remove science-bio` to remove MCP registration. The installer creates a directory junction at `~/.agents/skills/codex-science`; verify that it points to this checkout before removing the link. External data and project files remain available.

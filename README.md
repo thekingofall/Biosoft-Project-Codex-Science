@@ -38,6 +38,12 @@ Compose existing PNG panels in a regular or 12-column grid, preserve their aspec
 
 For more specialized single-cell, enrichment or spatial analysis, Codex works with the relevant software and analysis skills. Keep scripts, plot-ready tables and figures in the project for later revision.
 
+## Continue analysis on your server
+
+Use an isolated Mamba environment for persistent Python and R sessions. Variables stay available between calls, while executed code, outputs and errors are saved in notebooks. Submit longer analyses as detached jobs, inspect logs, cancel work, and retrieve selected results with SHA-256 verification.
+
+Ask Codex: **“Read this CSV on my server, check missing values, keep the Python session open, and submit the longer calculation as a background job.”** See the bilingual [server guide](docs/remote.md) for setup and examples. Saved notebooks can help recreate memory state after a server reboot.
+
 ## Scientific databases and models
 
 The database connector exposes 224 query operations across 23 domains, including gene, protein, pathway, compound, trial and public omics records. Sources include Ensembl, UniProt, PubChem, GEO and ChEMBL. Provider configuration and availability vary.
@@ -99,7 +105,7 @@ The full database connector, original skill reference reader and original helper
 
 This release combines an independently implemented research workbench, the existing database adapter, a catalog of 29 local skill resources, and 22 tested deterministic helpers from locally supplied kernels. Codex performs document reading, synthesis and drafting with these tools.
 
-Persistent notebooks, specialized molecular viewers, account services and the complete original job lifecycle still require integration. Static analysis of the original application is underway; application-wide behavioral equivalence has not been established. See [coverage](docs/application-coverage.md), the [capability catalog](docs/capabilities.json), and [validation](docs/validation.md).
+Persistent Python/R execution, notebook records and detached SSH jobs are available. A notebook web editor, specialized molecular viewers, account services, Slurm and cloud provisioning still require integration. Static analysis of the original application is underway; application-wide behavioral equivalence has not been established. See [coverage](docs/application-coverage.md), the [capability catalog](docs/capabilities.json), and [validation](docs/validation.md).
 
 ## Project and sources
 

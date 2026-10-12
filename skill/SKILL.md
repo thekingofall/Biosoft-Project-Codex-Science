@@ -41,8 +41,14 @@ Inspect the chosen environment and available resources before installation. Larg
 
 For an existing model service, configure `CODEX_SCIENCE_ENDPOINTS` and call `science_model_endpoint_request` with the service's real route and payload. Obtain authorization for paid services. Preserve API error states; a returned HTTP response alone does not validate the scientific prediction. Never synthesize a model output to stand in for unavailable weights, credentials or compute.
 
+## Persistent server analysis
+
+When a private remote profile is configured, use `science_remote` to check health, start persistent Python/R sessions, execute code and close sessions. Reuse the returned session ID to retain variables. Executions are saved in an `.ipynb` notebook. Use `job_submit` for work longer than 90 seconds; query `job_status` and `job_logs`, and cancel only the intended job. A submission ID establishes launch, while a final status and inspected artifacts establish the result.
+
+Keep large data on the server. `science_fetch_artifact` retrieves a selected file with hash verification and preserves existing local files. Use project-relative remote paths and the current local project workspace. Read `../docs/remote.md` for schemas, private configuration and Mamba setup. Keep installations inside the project environment, preserve system software and existing environments, and respect the user's model exclusions. SSH disconnection preserves work; server reboot requires restarting the runtime and recreating memory state from saved code.
+
 ## Application features and source boundaries
 
-Use Codex's native file tools, code execution, browser, history and artifact viewers for corresponding research tasks. Persistent notebooks, specialized molecular viewers, Claude account services and the original application database remain separate integration work. Read `../docs/application-coverage.md` when discussing reconstruction scope. Local helper tests, model inference and original-application parity must be described separately.
+Use Codex's native file tools, code execution, browser, history and artifact viewers for corresponding research tasks. Persistent Python/R execution and notebook records are available through the remote runtime. A notebook web editor, specialized molecular viewers, Claude account services and the original application database remain separate integration work. Read `../docs/application-coverage.md` when discussing reconstruction scope. Local helper tests, model inference and original-application parity must be described separately.
 
 For API credentials, use private local settings and process environment variables. Keep secrets and personal scientific data outside public commits. Public repository files are the authored adapter; extracted application resources remain at their verified local source.

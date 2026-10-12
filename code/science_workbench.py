@@ -15,7 +15,8 @@ def build_server():
     from compute_tools import register_tools as compute
     from figure_tools import register_tools as figures
     from composition_tools import register_tools as compose
-    for register in (research, kernels, compute, figures, compose):
+    from remote_tools import register_tools as remote
+    for register in (research, kernels, compute, figures, compose, remote):
         register(mcp)
     return mcp
 

@@ -1,0 +1,18 @@
+# Create with mamba env create --prefix /your/project/envs/runtime --file environment.remote.yml
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - python=3.11
+  - r-base=4.3
+  - r-irkernel
+  - r-jsonlite
+  - r-png
+  - r-ggplot2
+  - jupyter_client=8.6
+  - ipykernel=6.29
+  - nbformat=5.10
+  - pyzmq=26.2
+  - pandas
+  - numpy
+  - scipy

@@ -1,5 +1,24 @@
 # Validation / 验证范围
 
+## Workbench 0.3.0 — server analysis
+
+On 2026-10-12, the Windows suite passed 68 tests, with 5 Linux-only tests skipped there. The 5 runtime tests passed on the configured Linux server. Codex discovered 25 workbench tools with no tool-loading error.
+
+真实 MCP/SSH 验收通过 14 项检查：Python 与 R 的变量保留、Python 报错记录、超时中断后继续执行、两种语言的笔记本保存与校验下载、独立环境中的 ggplot2 和 CSV 输出、Python/R 后台任务、日志读取、失败退出码、取消、超时及结果文件校验。
+
+The server environment was created with Mamba inside the project. The existing system R and base Python retained their previous versions. Deep-learning models and weights were excluded from this deployment. `environment.remote.yml` records the package requirements; the server's `reports/environment-explicit.txt` records the installed package builds.
+
+Five additional checks passed after restarting the project service: Python and R state recovery, valid saved notebooks, project-local Python temporary storage, project-local R libraries, and a detached job surviving the restart. Run `code/verify_remote_recovery.py --root <project>` with the server environment when the runtime is idle; this opt-in check restarts that project service.
+
+With a private remote profile configured, run the actual remote acceptance:
+
+```powershell
+$env:CODEX_SCIENCE_TEST_TMP = 'D:\CodexTmp\science-tests'
+.\.venv\Scripts\python.exe code\verify_remote.py
+```
+
+The acceptance creates small project data and starts its own sessions/jobs. It closes its sessions and retains remote notebooks and task records. It requires an already running project service; CI runs the offline regression tests.
+
 ## Workbench 0.2.0
 
 The local Windows environment passed 60 tests on 2026-10-12, including actual R plotting and multi-panel composition. These checks cover file handling and tool behavior; model predictions and scientific conclusions have separate validation requirements.
@@ -33,7 +52,7 @@ $env:CODEX_SCIENCE_TEST_R = '1'
 
 The offline suite uses generated fixtures. Real source-helper tests skip when the separately supplied original assets are absent. R tests are enabled by the environment flag above; they require R, jsonlite and png. CI installs Python dependencies and runs offline tests without proprietary assets, internet service calls or model downloads.
 
-当前未完成全部生物模型的数值推理测试，也未建立原版应用的整体行为等价性。原版持续笔记本、专用查看器、账户和完整云任务生命周期的状态见[功能范围](application-coverage.md)。
+当前未完成全部生物模型的数值推理测试，也未建立原版应用的整体行为等价性。持续笔记本、专用查看器、账户和云任务管理各部分的状态见[功能范围](application-coverage.md)。
 
 ## Existing database adapter
 

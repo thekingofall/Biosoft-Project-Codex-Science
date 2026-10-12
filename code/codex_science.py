@@ -10,14 +10,22 @@ from science_mcp import PROJECT, BIO, prepare
 def main():
     parser=argparse.ArgumentParser(prog='codex-science',description=__doc__)
     commands=parser.add_subparsers(dest='command',required=True)
+    commands.add_parser('capabilities',help='List source capabilities and their actual execution requirements.')
     commands.add_parser('status',help='Check local assets, registration and prior validation.')
     tools=commands.add_parser('tools',help='Search the saved tool catalog; no network request.')
     tools.add_argument('--query',default='')
     tools.add_argument('--domain',default=None)
     tools.add_argument('--limit',type=int,default=20)
     args=parser.parse_args()
+    if args.command=='capabilities':
+        from capability_catalog import build_catalog
+        print(json.dumps(build_catalog(),ensure_ascii=False,indent=2)); return
     if args.command=='status':
-        source=prepare()
+        source_error=None
+        try: source=prepare()
+        except RuntimeError as exc:
+            source_error=str(exc)
+            source={'tool_count':0,'domains':{},'verified_files':0,'credentials_configured':{}}
         cfg=Path(os.environ.get('CODEX_HOME') or str(Path.home()/'.codex'))/'config.toml'
         config=tomllib.loads(cfg.read_text(encoding='utf-8')) if cfg.exists() else {}
         registration=config.get('mcp_servers',{}).get('science-bio',{})
@@ -27,15 +35,16 @@ def main():
             correct=Path(registration.get('command','')).resolve()==(PROJECT/'.venv/Scripts/python.exe').resolve()
         previous_path=PROJECT/'reports/live-tests.json'
         previous=json.loads(previous_path.read_text(encoding='utf-8')) if previous_path.exists() else {}
-        result={'product':'Codex Science','version':'0.1.0','skill':'$codex-science',
+        result={'product':'Codex Science','version':'0.2.0','skill':'$codex-science',
           'mcp_server':'science-bio','registered_to_this_project':correct,
           'enabled':registration.get('enabled',True) if registration else False,
-          'tools':source['tool_count'],'domains':len(source['domains']),
+          'tools':source['tool_count'],'domains':len(source['domains']),'external_assets_error':source_error,
           'verified_source_files':source['verified_files'],
           'credentials_configured':source['credentials_configured'],
           'last_online_test_at':previous.get('timestamp'),
           'last_online_test_passed':previous.get('passed'),
           'online_tested_tools':[c['tool'] for c in previous.get('calls', [])],
+          'workbench_registered':bool(config.get('mcp_servers',{}).get('science-workbench')),
           'network_checked_now':False}
         print(json.dumps(result,ensure_ascii=False,indent=2))
         return

@@ -2,130 +2,105 @@
 
 **English** · [简体中文](README.zh-CN.md)
 
-**Search papers, find data, analyze experiments, and make scientific figures in Codex.**
+**Bring papers, data, analysis and manuscript writing into one Codex workflow.**
 
-Codex Science is a toolkit for biomedical researchers who use Codex. It connects scientific databases to your conversation, so you can describe a research task in plain language, retrieve relevant records, and continue working with your own R, Python, or server environment.
+Codex Science is a research toolkit for biomedical work. Describe a question and let Codex retrieve scientific records, read local papers, organize evidence, write analysis code, make figures and revise a manuscript. Outputs stay in your project as editable files.
 
-If you are studying a gene, you can ask Codex for its identifiers, protein sequence, relevant papers, and public datasets. When you have your own expression matrix, you can continue by checking the sample groups, writing analysis code, making figures, and preparing a report.
+For example, start with a question about T-cell ageing: find primary studies, compare their populations and methods, keep a page-linked evidence table, and use that evidence to develop an introduction or discussion around your own results.
 
-**Built for people who already use Codex and want to bring it into everyday research.** The current installer supports Windows. Database access requires separately prepared local connector assets; see the [installation guide](docs/setup.md).
+[Literature and writing](#from-papers-to-manuscripts) · [Databases and models](#scientific-databases-and-models) · [Examples](#try-these-requests) · [Install](#install) · [Coverage](docs/application-coverage.md)
 
-[Features](#what-can-you-do) · [Examples](#try-these-requests) · [Installation](#installation) · [FAQ](#frequently-asked-questions)
+## From papers to manuscripts
 
-## What can you do?
+### Find papers and keep usable references
 
-### Find papers and understand a research question
+Search Crossref and resolve DOI metadata. The database connector adds PubMed, arXiv, OpenAlex, bioRxiv and other sources. Codex can compare findings, identify disagreements and organize a source-backed review. Export references as **BibTeX, RIS or JSON**.
 
-Search services such as PubMed, arXiv, and OpenAlex, retrieve publication details, and ask Codex to organize the results around your question.
+Crossref is available through the standalone workbench. Other providers may require a contact email or API key. Scientific claims still need to be checked against the primary paper.
 
-Use this for background reading, a gene-focused literature search, or finding papers about a method. Ask for titles, dates, identifiers, and source links so you can return to the original publications.
+### Read PDFs with page-level provenance
 
-### Bring together gene and protein information
+Read bookmarks and selected pages, search passages, extract DOI and GEO candidates, and render pages for figure inspection. Evidence tables retain claims, sources, pages, quotations, findings and limitations. Local PDF quotations are checked against their cited page.
 
-Look up standard gene identifiers, genomic coordinates, protein sequences, functional annotations, and pathway mappings through services including Ensembl, UniProt, GO, and Reactome.
+Page search uses literal text matching. Codex can read rendered pages or use an available OCR tool for scanned documents. Long documents can be covered in bounded batches.
 
-For a candidate gene list, ask Codex to organize the identifiers, known functions, and related pathways into a useful reference for further investigation.
+### Develop a paper's argument and an editable draft
 
-### Find public datasets for your study
+Ask Codex to read your abstract, results and figure captions, then assess the research question, figure order, supporting evidence and missing analyses. Continue with introductions, results, discussions, captions or a structured indication dossier.
 
-Search resources such as GEO, ArrayExpress, and PRIDE for records relevant to a tissue, condition, or experiment type.
+Keep manuscripts in Markdown and export to **Word**. The exporter supports headings, paragraphs, lists, tables, emphasis, links and local images; complex equations retain their source text. A manuscript check flags empty sections, unresolved citation markers and missing figures.
 
-Use this to find reference cohorts, potential validation datasets, or earlier studies. Once you have candidates, ask Codex to inspect the available project information and study design before deciding what to download.
+## From data to figures
 
-### Look up compounds, drugs, and clinical studies
+Use your existing R, Python or server environment for analysis. The built-in R plotting tool turns prepared CSV tables into scatter, line, box or bar plots, saving **PDF, PNG, input checksums and reproduction parameters**. It uses English labels, Arial and a shared palette.
 
-Retrieve compound identifiers, drug-related records, and clinical trial information from sources such as PubChem, ChEMBL, and ClinicalTrials.gov.
+Compose existing PNG panels in a regular or 12-column grid, preserve their aspect ratios, add Arial panel letters, and export PDF/PNG with provenance.
 
-For example, start with a compound name, establish its standard identifier, and then collect related target information or study records.
+For more specialized single-cell, enrichment or spatial analysis, Codex works with the relevant software and analysis skills. Keep scripts, plot-ready tables and figures in the project for later revision.
 
-### Explore existing structures and interactions
+## Scientific databases and models
 
-Find existing structure records in PDB and AlphaFold DB, and retrieve protein interaction information from sources such as STRING.
+The database connector exposes 224 query operations across 23 domains, including gene, protein, pathway, compound, trial and public omics records. Sources include Ensembl, UniProt, PubChem, GEO and ChEMBL. Provider configuration and availability vary.
 
-This can provide structural context for a protein or help you examine known interactions among a group of candidates.
+The model catalog provides input formats, actual software entry points, weight requirements and expected outputs:
 
-### Continue with your own analysis, figures, and reports
+| Research task | Models and software |
+|---|---|
+| Structure prediction and docking | AlphaFold2, Boltz, Chai-1, DiffDock, ESMFold2, OpenFold3 |
+| Protein sequence design | ProteinMPNN, LigandMPNN, SolubleMPNN |
+| Sequence and regulatory models | ESM2, Evo2, Borzoi |
+| Single-cell models | scGPT, scvi-tools |
 
-Provide your data and sample information, and the Codex Science workflow guides Codex to clarify the research question, groups, and data characteristics before writing and running code in your available environment.
-
-Figure guidance defaults to R, with plot-ready data, scripts, and PNG/PDF exports kept together. These files let you revisit colors, labels, and layout later.
-
-Analysis depends on Codex and your existing computing environment. Statistical methods must fit the study design, and the required R packages, Python packages, or scientific model runtimes must be configured for the task.
+Each model needs its own environment, weights and compute. Codex Science can inspect local resources, prepare Bash/Slurm jobs, call a configured model endpoint and record output hashes. Full inference across all models remains unvalidated.
 
 ## Try these requests
 
-After installation, type `$codex-science` in a Codex conversation and describe what you need.
+```text
+$codex-science
+Find primary studies on T-cell ageing. Compare populations, methods and
+findings, keep traceable citations, and export a RIS bibliography.
+```
 
-**Get to know a gene**
+```text
+$codex-science
+Read the three PDFs in this project. Compare their batch-correction methods,
+record limitations and page references, and write a connected synthesis.
+```
 
-> $codex-science I am studying human BRCA1. Find its Ensembl identifier, genomic coordinates, and UniProt protein sequence. Include the source links.
+```text
+$codex-science
+Read manuscript.md and the figures folder. Improve the scientific argument,
+revise the results and discussion, check missing references, and export Word.
+```
 
-**Find papers for a research question**
+```text
+$codex-science
+Check whether my compute environment can run Boltz. Identify required inputs
+and weights, and prepare a script before any model deployment.
+```
 
-> $codex-science Search for papers on T-cell aging and mitochondrial function. Group them by research question and include the main findings and original links.
+## Install
 
-**Find useful public data**
+Requires **Python 3.12, Codex and MCP support**. R plots additionally need R and `jsonlite`/`png`. The literature, PDF, manuscript and compute workbench can be installed independently.
 
-> $codex-science Find human peripheral-blood transcriptomic studies of aging in GEO. First organize their dataset identifiers, experiment types, and available sample information, then suggest which studies deserve a closer look.
+```powershell
+git clone https://github.com/thekingofall/Biosoft-Project-Codex-Science.git
+cd Biosoft-Project-Codex-Science
+uv venv --python 3.12 .venv
+uv pip install --python .venv\Scripts\python.exe -r requirements.lock.txt
+.\code\install-workbench.ps1
+```
 
-**Analyze an expression matrix**
+Reload Codex MCP connections and skills, then start with `$codex-science`.
 
-> $codex-science Here are an expression matrix and a sample sheet. Check the data type, groups, and batches, then choose a differential analysis suited to the study design. Make the figures in R and save the plot data and scripts.
+The full database connector, original skill reference reader and original helper execution additionally require locally supplied Claude Science 0.1.60 assets. See [setup](docs/setup.md). Obtain model weights and service accounts under their respective terms.
 
-These are example tasks. Literature and database queries depend on each service's access requirements; analysis needs actual data, sample information, and a working environment.
+## Current coverage
 
-## How it works with Codex
+This release combines an independently implemented research workbench, the existing database adapter, a catalog of 29 local skill resources, and 22 tested deterministic helpers from locally supplied kernels. Codex performs document reading, synthesis and drafting with these tools.
 
-| Part | What it does during your work |
-| --- | --- |
-| Codex | Understands the question, selects tools, writes and runs analysis code, and interprets results |
-| The `$codex-science` skill | Guides the research workflow from retrieval through analysis, figures, and reporting |
-| The `science-bio` connector | Queries scientific databases and returns their records to Codex |
-| Your computing environment | Runs R, Python, and the scientific software needed for the task |
+Persistent notebooks, specialized molecular viewers, account services and the complete original job lifecycle still require integration. Static analysis of the original application is underway; application-wide behavioral equivalence has not been established. See [coverage](docs/application-coverage.md), the [capability catalog](docs/capabilities.json), and [validation](docs/validation.md).
 
-The currently supported connector provides **224 query operations across 23 domains**. Together with the workflow guidance, it lets you continue a research task within the same Codex conversation.
+## Project and sources
 
-## Installation
-
-You need **Windows, Codex CLI, Python 3.12, and uv**. Follow the [installation guide](docs/setup.md).
-
-**You also need a prepared local Claude Science 0.1.60 connector directory and its manifest.** This GitHub repository supplies the adapter, skill, and installation scripts; the connector assets are supplied separately on your computer. The guide explains the required layout and configuration.
-
-After installation, reload Codex skills and MCP connections to use `$codex-science`. MCP is the connection method Codex uses to call the database tools.
-
-Some services require your own access settings:
-
-| Service | What to configure |
-| --- | --- |
-| PubMed and other NCBI interfaces | Contact email; an NCBI API key is optional |
-| OpenAlex | API key |
-
-Store these settings in the local `user-settings.toml` file using the provided example. See the [installation guide](docs/setup.md) for details.
-
-## Frequently asked questions
-
-**Where do I use it?**
-
-In a Codex conversation. Start your request with `$codex-science`, or ask Codex to use a specific tool from `science-bio`.
-
-**Do I need to know how to code?**
-
-You can describe the task in plain language and have Codex write the code. Research analysis still needs a clear study design, sample information, and criteria for interpreting the results.
-
-**Can it work with my server?**
-
-Codex can use a server you have configured and authorized it to access. Connections, data paths, software dependencies, and computing resources must be set up for your project.
-
-**Can I query databases immediately after cloning?**
-
-You must also prepare the local connector assets described in the installation guide and configure the services you need. Database integration cannot finish until those prerequisites are available.
-
-**Will every feature work for my project?**
-
-That depends on your data and environment. The adapter currently targets Claude Science 0.1.60; some interfaces require an email or key, and upstream services can change. See the [validation notes](docs/validation.md) for the checks actually performed.
-
-## Further reading
-
-[Installation and configuration](docs/setup.md) · [Validation scope](docs/validation.md) · [Workflow skill](skill/SKILL.md) · [Provenance](NOTICE.md)
-
-Codex Science is an independent community integration. Authored code in this repository is [MIT licensed](LICENSE); external connectors, databases, and scientific software retain their own terms.
+An independent Codex adapter, with no official affiliation with OpenAI or Anthropic. Original adapter code uses the [MIT License](LICENSE). External distributions, model weights and third-party resources retain their own licenses. See [NOTICE](NOTICE.md).

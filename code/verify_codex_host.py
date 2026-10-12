@@ -1,7 +1,9 @@
 """Read Codex's MCP discovery through its app-server protocol; no model turn."""
-import asyncio,json,os,shutil
+import asyncio,json,os,shutil,sys
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
+SERVER=sys.argv[1] if len(sys.argv)>1 else 'science-bio'
+if SERVER not in {'science-bio','science-workbench'}: raise ValueError('Choose science-bio or science-workbench')
 def codex_binary():
  explicit=os.environ.get('CODEX_BIN') or shutil.which('codex.exe')
  if explicit and Path(explicit).is_file():return Path(explicit)
@@ -27,8 +29,8 @@ async def main():
  try:
   await request(1,'initialize',{'clientInfo':{'name':'science_mcp_acceptance','version':'0.1.0'},'capabilities':{'experimentalApi':True}})
   process.stdin.write(b'{"method":"initialized","params":{}}\n');await process.stdin.drain()
-  result=await request(2,'mcpServerStatus/list',{'serverName':'science-bio','detail':'toolsAndAuthOnly'})
-  (ROOT/'reports/codex-host-discovery.json').write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8')
+  result=await request(2,'mcpServerStatus/list',{'serverName':SERVER,'detail':'toolsAndAuthOnly'})
+  (ROOT/('reports/codex-host-discovery.json' if SERVER=='science-bio' else 'reports/workbench-host-discovery.json')).write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8')
   print(json.dumps({'status':'Codex discovery response saved','keys':list(result),'data_summary':[{k:(len(v) if isinstance(v,(dict,list)) else v) for k,v in x.items()} for x in result.get('data',[])]},ensure_ascii=False))
  finally:
   process.stdin.close()

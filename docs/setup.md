@@ -1,5 +1,20 @@
 # Setup / 安装
 
+## Standalone workbench / 基础科研工作台
+
+The workbench provides Crossref, PDF reading, evidence tables, Word export, R plots and compute preparation independently of the original distribution. Install the repository's Python requirements, then run:
+
+基础工作台可单独安装，文献查询、PDF 阅读、证据表和 Word 导出可以直接使用：
+
+```powershell
+uv venv --python 3.12 .venv
+uv pip install --python .venv\Scripts\python.exe -r requirements.lock.txt
+.\code\install-workbench.ps1
+.\.venv\Scripts\python.exe -X utf8 .\code\verify_workbench.py --online
+```
+
+For plots install R and the `jsonlite` and `png` packages. Set `CODEX_SCIENCE_RSCRIPT` if Rscript is outside PATH. Model APIs use a private configuration pointed to by `CODEX_SCIENCE_ENDPOINTS`; see [compute setup](application-coverage.md#use-a-model-endpoint). Set these variables in the MCP process environment, then reconnect.
+
 ## External assets / 外部资源
 
 The adapter is pinned to the prepared Claude Science 0.1.60 layout below. The release directory must be supplied separately; it is not part of this repository. Use materials you are entitled to use. This repository does not include a binary downloader or an extractor.
@@ -9,6 +24,7 @@ The adapter is pinned to the prepared Claude Science 0.1.60 layout below. The re
 ```text
 0.1.60/
   asset-text-manifest.json
+  extracted/asset-text/skills/     # original skill resources and kernels
   extracted/asset-text/mcp-servers/bio-tools/
     run_server.py
     lib/
@@ -45,7 +61,7 @@ Reload Codex skills and MCP connections, then start a request with `$codex-scien
 
 重新加载 Codex 技能和 MCP 连接，然后用 `$codex-science` 开始提问。
 
-`install-codex.ps1` registers `science-bio` and links the `codex-science` skill to this checkout. It refuses to overwrite a same-name registration belonging to a different checkout. To intentionally switch checkouts, first review and remove the previous registration with `codex mcp remove science-bio`, and remove its skill link after verifying the target.
+`install-codex.ps1` registers `science-bio` and `science-workbench`, and links the `codex-science` skill to this checkout. It refuses to overwrite a same-name registration belonging to a different checkout. To intentionally switch checkouts, first review and remove the previous registration with `codex mcp remove science-bio`, and remove its skill link after verifying the target.
 
 安装器核对已有同名入口的归属；同名入口指向其他项目时会停止。切换目录前，请先核对旧配置和技能链接。
 
@@ -77,4 +93,11 @@ Optional Codex host discovery: run `code/verify_codex_host.py`. If automatic exe
 
 ## Remove / 移除
 
-Run `codex mcp remove science-bio` to remove MCP registration. The installer creates a directory junction at `~/.agents/skills/codex-science`; verify that it points to this checkout before removing the link. External data and project files remain available.
+Run `codex mcp remove science-bio` and `codex mcp remove science-workbench` to remove the respective MCP registrations. The installer creates a directory junction at `~/.agents/skills/codex-science`; verify that it points to this checkout before removing the link. External data and project files remain available.
+
+
+## Capability reference and model execution / 能力目录与模型执行
+
+`codex-science.ps1 capabilities` inspects all 29 locally supplied skill directories. It validates their source files and lists the model requirements. Runtime tools expose the same data through `science_list_capabilities`, `science_read_capability` and `science_model_recipe`. The 22 allowlisted helper functions require the exact reviewed local kernel version.
+
+技能资源、模型环境和权重保持各自来源。某项模型显示运行说明，表示可以查看其输入、软件与算力要求；实际运行状态以目标环境的真实任务结果为准。选择计算服务器后，再安装缺少的环境并执行小型输入测试。

@@ -1,0 +1,1736 @@
+{
+  "source_version": "0.1.60",
+  "capability_count": 29,
+  "scope": "All packaged skill resources; original application runtime parity has not been established.",
+  "capabilities": [
+    {
+      "id": "alphafold2",
+      "description": "Protein and complex structure prediction with ColabFold / AlphaFold2.",
+      "resources": [
+        "SKILL.md"
+      ],
+      "execution_status": "reference_workflow_available",
+      "workflow_status": "Requires Codex orchestration and environment-specific validation",
+      "direct_helpers": [],
+      "dependencies": [
+        "Model software and separately supplied weights",
+        "Suitable compute; GPU requirements vary by model"
+      ],
+      "model_requirements": {
+        "software": [
+          "ColabFold",
+          "JAX"
+        ],
+        "weights": "AlphaFold2 / AF2-Multimer parameters",
+        "external_service": "MMseqs2 if using the public MSA service"
+      },
+      "python_modules": [],
+      "full_original_runtime_parity": false
+    },
+    {
+      "id": "boltz",
+      "description": "Biomolecular complex structure and optional binding-affinity prediction.",
+      "resources": [
+        "SKILL.md"
+      ],
+      "execution_status": "reference_workflow_available",
+      "workflow_status": "Requires Codex orchestration and environment-specific validation",
+      "direct_helpers": [],
+      "dependencies": [
+        "Model software and separately supplied weights",
+        "Suitable compute; GPU requirements vary by model"
+      ],
+      "model_requirements": {
+        "software": [
+          "boltz",
+          "PyTorch"
+        ],
+        "weights": "Boltz-2",
+        "external_service": "MSA server when enabled"
+      },
+      "python_modules": [],
+      "full_original_runtime_parity": false
+    },
+    {
+      "id": "borzoi",
+      "description": "DNA sequence to regulatory tracks and variant-effect estimates.",
+      "resources": [
+        "SKILL.md"
+      ],
+      "execution_status": "reference_workflow_available",
+      "workflow_status": "Requires Codex orchestration and environment-specific validation",
+      "direct_helpers": [],
+      "dependencies": [
+        "Model software and separately supplied weights",
+        "Suitable compute; GPU requirements vary by model"
+      ],
+      "model_requirements": {
+        "software": [
+          "PyTorch",
+          "borzoi-pytorch"
+        ],
+        "weights": "johahi/borzoi-replicate-0",
+        "compute_note": "Source guide specifies at least 24 GB VRAM"
+      },
+      "python_modules": [],
+      "full_original_runtime_parity": false
+    },
+    {
+      "id": "chai1",
+      "description": "Protein, nucleic-acid and ligand complex structure prediction.",
+      "resources": [
+        "SKILL.md"
+      ],
+      "execution_status": "reference_workflow_available",
+      "workflow_status": "Requires Codex orchestration and environment-specific validation",
+      "direct_helpers": [],
+      "dependencies": [
+        "Model software and separately supplied weights",
+        "Suitable compute; GPU requirements vary by model"
+      ],
+      "model_requirements": {
+        "software": [
+          "chai-lab",
+          "PyTorch"
+        ],
+        "weights": "Chai-1"
+      },
+      "python_modules": [],
+      "full_original_runtime_parity": false
+    },
+    {
+      "id": "compute-env-setup",
+      "description": "Prepare scientific environments on SSH, Slurm or cloud compute.",
+      "resources": [
+        "SKILL.md",
+        "references/envs_reference.md"
+      ],
+      "execution_status": "reference_workflow_available",
+      "workflow_status": "Requires Codex orchestration and environment-specific validation",
+      "direct_helpers": [],
+      "dependencies": [
+        "Original host APIs need Codex-native adaptation for dependent operations"
+      ],
+      "model_requirements": null,
+      "python_modules": [],
+      "full_original_runtime_parity": false
+    },
+    {
+      "id": "customize",
+      "description": "Configure agent profiles and skill assignments.",
+      "resources": [
+        "SKILL.md"
+      ],
+      "execution_status": "reference_workflow_available",
+      "workflow_status": "Requires Codex orchestration and environment-specific validation",
+      "direct_helpers": [],
+      "dependencies": [
+        "Original host APIs need Codex-native adaptation for dependent operations"
+      ],
+      "model_requirements": null,
+      "python_modules": [],
+      "full_original_runtime_parity": false
+    },
+    {
+      "id": "diffdock",
+      "description": "Predict and rank small-molecule docking poses.",
+      "resources": [
+        "SKILL.md",
+        "references/workflows.md"
+      ],
+      "execution_status": "reference_workflow_available",
+      "workflow_status": "Requires Codex orchestration and environment-specific validation",
+      "direct_helpers": [],
+      "dependencies": [
+        "Model software and separately supplied weights",
+        "Suitable compute; GPU requirements vary by model"
+      ],
+      "model_requirements": {
+        "software": [
+          "DiffDock",
+          "PyTorch",
+          "RDKit"
+        ],
+        "weights": "DiffDock-L"
+      },
+      "python_modules": [],
+      "full_original_runtime_parity": false
+    },
+    {
+      "id": "esmfold2",
+      "description": "Sequence-based complex folding and protein language-model representations.",
+      "resources": [
+        "SKILL.md",
+        "references/design-hook.md",
+        "references/esmc.md"
+      ],
+      "execution_status": "reference_workflow_available",
+      "workflow_status": "Requires Codex orchestration and environment-specific validation",
+      "direct_helpers": [],
+      "dependencies": [
+        "Model software and separately supplied weights",
+        "Suitable compute; GPU requirements vary by model"
+      ],
+      "model_requirements": {
+        "software": [
+          "Biohub/esm",
+          "PyTorch"
+        ],
+        "weights": "ESMFold2 / ESMFold2-Fast or ESMC"
+      },
+      "python_modules": [],
+      "full_original_runtime_parity": false
+    },
+    {
+      "id": "evo2",
+      "description": "Genomic sequence likelihoods, embeddings and generation.",
+      "resources": [
+        "SKILL.md"
+      ],
+      "execution_status": "reference_workflow_available",
+      "workflow_status": "Requires Codex orchestration and environment-specific validation",
+      "direct_helpers": [],
+      "dependencies": [
+        "Model software and separately supplied weights",
+        "Suitable compute; GPU requirements vary by model"
+      ],
+      "model_requirements": {
+        "software": [
+          "evo2",
+          "PyTorch"
+        ],
+        "weights": "Evo 2 model selected for the task"
+      },
+      "python_modules": [],
+      "full_original_runtime_parity": false
+    },
+    {
+      "id": "fair-esm2",
+      "description": "Protein embeddings, mutation scoring and contact estimates.",
+      "resources": [
+        "SKILL.md"
+      ],
+      "execution_status": "reference_workflow_available",
+      "workflow_status": "Requires Codex orchestration and environment-specific validation",
+      "direct_helpers": [],
+      "dependencies": [
+        "Model software and separately supplied weights",
+        "Suitable compute; GPU requirements vary by model"
+      ],
+      "model_requirements": {
+        "software": [
+          "fair-esm",
+          "PyTorch"
+        ],
+        "weights": "ESM-2 checkpoint",
+        "compute_note": "Source guide specifies at least 16 GB VRAM for its 650M example"
+      },
+      "python_modules": [],
+      "full_original_runtime_parity": false
+    },
+    {
+      "id": "figure-composer",
+      "description": "Plan panel geometry, assemble figures and organize figure review.",
+      "resources": [
+        "SKILL.md",
+        "kernel.py"
+      ],
+      "execution_status": "verified_helpers_available",
+      "workflow_status": "Requires Codex orchestration and environment-specific validation",
+      "direct_helpers": [
+        "apply_outline_revisions",
+        "compose_crops",
+        "figure_outline_schema",
+        "grid_geom",
+        "group_fixes_by_panel",
+        "panel_px",
+        "panel_xy",
+        "review_schema"
+      ],
+      "dependencies": [
+        "Original host APIs need Codex-native adaptation for dependent operations"
+      ],
+      "model_requirements": null,
+      "python_modules": [
+        {
+          "resource": "kernel.py",
+          "sha256": "2625345ed20a54c19bcba91490e8b7d9d59f608d81196ca77a95eac148136534",
+          "imports": [
+            "PIL",
+            "host",
+            "json"
+          ],
+          "functions": [
+            {
+              "name": "fc_sdk",
+              "signature": "",
+              "async": false,
+              "calls": []
+            },
+            {
+              "name": "figure_outline_schema",
+              "signature": "",
+              "async": false,
+              "calls": []
+            },
+            {
+              "name": "grid_geom",
+              "signature": "outline, dpi=300, gutter_mm=4",
+              "async": false,
+              "calls": [
+                "int",
+                "len",
+                "range",
+                "sum"
+              ]
+            },
+            {
+              "name": "panel_px",
+              "signature": "outline, letter, dpi=300, gutter_mm=4",
+              "async": false,
+              "calls": [
+                "grid_geom",
+                "next",
+                "p.get",
+                "sum"
+              ]
+            },
+            {
+              "name": "panel_xy",
+              "signature": "outline, letter, dpi=300, gutter_mm=4",
+              "async": false,
+              "calls": [
+                "grid_geom",
+                "next"
+              ]
+            },
+            {
+              "name": "panel_task",
+              "signature": "outline, letter, fig_label='Figure', rules_ref='(load `figure-style`)'",
+              "async": false,
+              "calls": [
+                "', '.join",
+                "','.join",
+                "len",
+                "next",
+                "p.get",
+                "panel_px",
+                "q.get"
+              ]
+            },
+            {
+              "name": "compose_crops",
+              "signature": "outline, dpi=300, gutter_mm=4, pad_px=4",
+              "async": false,
+              "calls": [
+                "grid_geom",
+                "max",
+                "min",
+                "panel_px",
+                "panel_xy"
+              ]
+            },
+            {
+              "name": "compose_figure",
+              "signature": "outline, panel_paths, out_path, dpi=300, gutter_mm=4, letter_font='DejaVuSans-Bold.ttf', letter_pt=9, letter_case='lower'",
+              "async": false,
+              "calls": [
+                "Image.new",
+                "Image.open",
+                "Image.open(panel_paths[L]).convert",
+                "ImageDraw.Draw",
+                "ImageFont.load_default",
+                "ImageFont.truetype",
+                "L.lower",
+                "L.upper",
+                "canvas.paste",
+                "canvas.save",
+                "draw.text",
+                "grid_geom",
+                "im.resize",
+                "int",
+                "panel_px",
+                "panel_xy"
+              ]
+            },
+            {
+              "name": "group_fixes_by_panel",
+              "signature": "review",
+              "async": false,
+              "calls": [
+                "'\\n'.join",
+                "out.items",
+                "out.setdefault",
+                "out.setdefault(L, []).append",
+                "review.get",
+                "v.get"
+              ]
+            },
+            {
+              "name": "review_schema",
+              "signature": "per_panel=True",
+              "async": false,
+              "calls": [
+                "list"
+              ]
+            },
+            {
+              "name": "composite_review_task",
+              "signature": "composite_vid, outline, rules_vid, prev_vid=None, round_no=1, min_floor=5",
+              "async": false,
+              "calls": [
+                "'\\n'.join",
+                "p.get"
+              ]
+            },
+            {
+              "name": "apply_outline_revisions",
+              "signature": "outline, revisions",
+              "async": false,
+              "calls": [
+                "r.get",
+                "set"
+              ]
+            },
+            {
+              "name": "derive_outline",
+              "signature": "figure_png_path, claim=None, data_hints=None, model=None",
+              "async": false,
+              "calls": [
+                "(r.get('tool_use') or {}).get",
+                "fc_sdk",
+                "fc_sdk().llm",
+                "fc_sdk().reasoning_model",
+                "figure_outline_schema",
+                "out.get",
+                "r.get"
+              ]
+            }
+          ],
+          "original_host_dependency": true
+        }
+      ],
+      "full_original_runtime_parity": false
+    },
+    {
+      "id": "figure-style",
+      "description": "Figure typography, color, labeling and layout guidance.",
+      "resources": [
+        "SKILL.md",
+        "kernel.py"
+      ],
+      "execution_status": "verified_helpers_available",
+      "workflow_status": "Requires Codex orchestration and environment-specific validation",
+      "direct_helpers": [
+        "two_tier_label"
+      ],
+      "dependencies": [],
+      "model_requirements": null,
+      "python_modules": [
+        {
+          "resource": "kernel.py",
+          "sha256": "8d16286025719a395e744c5bedcefd1592b1b8e3450263dd1ea7807ffec70122",
+          "imports": [
+            "glob",
+            "matplotlib",
+            "matplotlib.colors",
+            "matplotlib.font_manager",
+            "matplotlib.pyplot",
+            "matplotlib.text",
+            "numpy",
+            "os",
+            "scipy.stats",
+            "sys"
+          ],
+          "functions": [
+            {
+              "name": "apply_figure_style",
+              "signature": "*, frame='open', font=None, sizes=(8, 7, 6), grid=False",
+              "async": false,
+              "calls": [
+                "ValueError",
+                "bool",
+                "fm.fontManager.addfont",
+                "glob.glob",
+                "mpl.rcParams.update",
+                "os.environ.get",
+                "os.path.isdir",
+                "os.path.join"
+              ]
+            },
+            {
+              "name": "set_frame",
+              "signature": "ax, style='open'",
+              "async": false,
+              "calls": [
+                "ax.spines[side].set_linewidth",
+                "ax.spines[side].set_visible",
+                "ax.tick_params",
+                "zip"
+              ]
+            },
+            {
+              "name": "panel_letter",
+              "signature": "ax, letter, dx=-0.18, dy=1.02, case='lower', fontsize=None",
+              "async": false,
+              "calls": [
+                "ax.text",
+                "letter.lower",
+                "letter.upper",
+                "plt.rcParams.get"
+              ]
+            },
+            {
+              "name": "focal_palette",
+              "signature": "labels, focal, focal_color, other='muted', base_colors=None",
+              "async": false,
+              "calls": [
+                "ValueError",
+                "enumerate",
+                "isinstance",
+                "len",
+                "max",
+                "mcolors.to_hex",
+                "mcolors.to_rgb",
+                "min",
+                "mute",
+                "plt.rcParams['axes.prop_cycle'].by_key",
+                "plt.rcParams['axes.prop_cycle'].by_key().get",
+                "range",
+                "rest.append",
+                "set"
+              ]
+            },
+            {
+              "name": "bar_with_points",
+              "signature": "ax, x, ymat, labels, colors, jitter=0.08, show_points=True, errorbar=None, point_alpha=0.5, point_size=8",
+              "async": false,
+              "calls": [
+                "_hw",
+                "ax.bar",
+                "ax.scatter",
+                "ax.set_xticklabels",
+                "ax.set_xticks",
+                "np.array",
+                "np.asarray",
+                "np.full",
+                "np.mean",
+                "np.random.rand",
+                "np.sqrt",
+                "np.std",
+                "t.ppf",
+                "zip"
+              ]
+            },
+            {
+              "name": "strip_with_median",
+              "signature": "ax, groups, values, colors=None, jitter=0.12",
+              "async": false,
+              "calls": [
+                "ax.plot",
+                "ax.scatter",
+                "ax.set_xticklabels",
+                "ax.set_xticks",
+                "enumerate",
+                "len",
+                "list",
+                "np.asarray",
+                "np.full",
+                "np.median",
+                "np.random.rand",
+                "range",
+                "zip"
+              ]
+            },
+            {
+              "name": "goodness_arrow",
+              "signature": "ax, text='higher = better', loc='upper left', axis='y', fontsize=None",
+              "async": false,
+              "calls": [
+                "ax.text"
+              ]
+            },
+            {
+              "name": "two_tier_label",
+              "signature": "name, meta",
+              "async": false,
+              "calls": []
+            },
+            {
+              "name": "end_of_line_labels",
+              "signature": "ax, xs, ys, labels, colors=None, dx=0.01, fontsize=None",
+              "async": false,
+              "calls": [
+                "ax.get_xlim",
+                "ax.text",
+                "len",
+                "zip"
+              ]
+            },
+            {
+              "name": "panel_crops",
+              "signature": "fig, dpi=None, pad_px=6, bbox_inches=None, pad_inches=None",
+              "async": false,
+              "calls": [
+                "(t.get_text() or '').strip",
+                "ax.findobj",
+                "ax.get_shared_x_axes",
+                "ax.get_shared_x_axes().joined",
+                "ax.get_shared_y_axes",
+                "ax.get_shared_y_axes().joined",
+                "ax.get_subplotspec",
+                "ax.get_tightbbox",
+                "bbs.append",
+                "enumerate",
+                "fig.canvas.draw",
+                "fig.canvas.get_renderer",
+                "fig.get_size_inches",
+                "fig.get_tightbbox",
+                "fig.get_tightbbox(r).padded",
+                "float",
+                "int",
+                "isinstance",
+                "len",
+                "lettered.items",
+                "max",
+                "min",
+                "mpl.rcParams.get",
+                "mpl.transforms.Bbox.union",
+                "round",
+                "s.isalpha",
+                "sib.get_subplotspec",
+                "sib.get_tightbbox",
+                "str",
+                "t.get_fontweight",
+                "t.get_text"
+              ]
+            }
+          ],
+          "original_host_dependency": false
+        }
+      ],
+      "full_original_runtime_parity": false
+    },
+    {
+      "id": "indication-dossier",
+      "description": "Organize disease biology, patient populations, care and trial evidence.",
+      "resources": [
+        "SKILL.md",
+        "references/00-research-standards.md",
+        "references/01-meta-initialization.md",
+        "references/02-epidemiology-research.md",
+        "references/03-biology-soc-research.md",
+        "references/04-regulatory-trials-research.md",
+        "references/05-synthesis.md",
+        "references/06-writing-style.md",
+        "references/waypoint-schemas.md"
+      ],
+      "execution_status": "reference_workflow_available",
+      "workflow_status": "Requires Codex orchestration and environment-specific validation",
+      "direct_helpers": [],
+      "dependencies": [],
+      "model_requirements": null,
+      "python_modules": [],
+      "full_original_runtime_parity": false
+    },
+    {
+      "id": "ligandmpnn",
+      "description": "Design protein sequences with ligand and other molecular context.",
+      "resources": [
+        "SKILL.md"
+      ],
+      "execution_status": "reference_workflow_available",
+      "workflow_status": "Requires Codex orchestration and environment-specific validation",
+      "direct_helpers": [],
+      "dependencies": [
+        "Model software and separately supplied weights",
+        "Suitable compute; GPU requirements vary by model"
+      ],
+      "model_requirements": {
+        "software": [
+          "LigandMPNN",
+          "PyTorch",
+          "NumPy",
+          "Biopython",
+          "ProDy",
+          "ml_collections",
+          "dm-tree"
+        ],
+        "weights": "Matching LigandMPNN model checkpoint"
+      },
+      "python_modules": [],
+      "full_original_runtime_parity": false
+    },
+    {
+      "id": "literature-review",
+      "description": "Search and organize publications, citations and review evidence.",
+      "resources": [
+        "SKILL.md",
+        "kernel.py"
+      ],
+      "execution_status": "verified_helpers_available",
+      "workflow_status": "Requires Codex orchestration and environment-specific validation",
+      "direct_helpers": [
+        "crossref_authors",
+        "crossref_year",
+        "extract_dois",
+        "html_decode",
+        "openalex_authors",
+        "quote_doi_path",
+        "short_authors",
+        "style_pass"
+      ],
+      "dependencies": [
+        "Original host APIs need Codex-native adaptation for dependent operations",
+        "Network access and credentials required by each literature provider"
+      ],
+      "model_requirements": null,
+      "python_modules": [
+        {
+          "resource": "kernel.py",
+          "sha256": "613886f3132fe5b1118112be71555882cb353b483d0f75da3a883c4aba691856",
+          "imports": [
+            "host",
+            "json",
+            "os",
+            "re",
+            "time",
+            "urllib.error",
+            "urllib.parse",
+            "urllib.request"
+          ],
+          "functions": [
+            {
+              "name": "lr_sdk",
+              "signature": "",
+              "async": false,
+              "calls": []
+            },
+            {
+              "name": "litrev_contact",
+              "signature": "",
+              "async": false,
+              "calls": [
+                "isinstance",
+                "lr_sdk",
+                "lr_sdk().get_user_email"
+              ]
+            },
+            {
+              "name": "litrev_user_agent",
+              "signature": "contact: str | None=None",
+              "async": false,
+              "calls": [
+                "contact.isascii",
+                "re.search"
+              ]
+            },
+            {
+              "name": "litrev_openalex_key",
+              "signature": "",
+              "async": false,
+              "calls": [
+                "RuntimeError",
+                "isinstance",
+                "lr_sdk",
+                "lr_sdk().credentials.request",
+                "os.environ.get",
+                "type"
+              ]
+            },
+            {
+              "name": "litrev_openalex_key_ok",
+              "signature": "key: str, timeout: float=10",
+              "async": false,
+              "calls": [
+                "litrev_user_agent",
+                "urllib.parse.quote",
+                "urllib.request.Request",
+                "urllib.request.urlopen"
+              ]
+            },
+            {
+              "name": "litrev_openalex_get",
+              "signature": "url: str, timeout: float=15",
+              "async": false,
+              "calls": [
+                "RuntimeError",
+                "json.loads",
+                "litrev_openalex_key",
+                "litrev_openalex_key_ok",
+                "litrev_user_agent",
+                "r.read",
+                "r.read().decode",
+                "time.sleep",
+                "urllib.parse.quote",
+                "urllib.request.Request",
+                "urllib.request.urlopen"
+              ]
+            },
+            {
+              "name": "litrev_get",
+              "signature": "url: str, timeout: float=15",
+              "async": false,
+              "calls": [
+                "json.loads",
+                "litrev_contact",
+                "litrev_user_agent",
+                "r.read",
+                "r.read().decode",
+                "time.sleep",
+                "urllib.request.Request",
+                "urllib.request.urlopen"
+              ]
+            },
+            {
+              "name": "quote_doi_path",
+              "signature": "doi: str",
+              "async": false,
+              "calls": [
+                "'/'.join",
+                "doi.split",
+                "urllib.parse.quote",
+                "urllib.parse.unquote"
+              ]
+            },
+            {
+              "name": "crossref_year",
+              "signature": "m: dict",
+              "async": false,
+              "calls": [
+                "(m.get('published') or {}).get",
+                "m.get"
+              ]
+            },
+            {
+              "name": "short_authors",
+              "signature": "names: list[str]",
+              "async": false,
+              "calls": [
+                "'; '.join",
+                "len",
+                "n.strip"
+              ]
+            },
+            {
+              "name": "crossref_authors",
+              "signature": "m: dict",
+              "async": false,
+              "calls": [
+                "a.get",
+                "m.get",
+                "short_authors"
+              ]
+            },
+            {
+              "name": "openalex_authors",
+              "signature": "w: dict",
+              "async": false,
+              "calls": [
+                "(a.get('author') or {}).get",
+                "a.get",
+                "short_authors",
+                "w.get"
+              ]
+            },
+            {
+              "name": "litrev_head",
+              "signature": "url: str, timeout: float=10",
+              "async": false,
+              "calls": [
+                "litrev_contact",
+                "litrev_user_agent",
+                "opener.open",
+                "time.sleep",
+                "urllib.request.Request",
+                "urllib.request.build_opener"
+              ]
+            },
+            {
+              "name": "verify_dois",
+              "signature": "dois: list[str]",
+              "async": false,
+              "calls": [
+                "any",
+                "crossref_authors",
+                "crossref_year",
+                "d.strip",
+                "litrev_get",
+                "litrev_head",
+                "m.get",
+                "quote_doi_path",
+                "str",
+                "str(m.get('subtype') or '').lower",
+                "t.lower",
+                "time.sleep",
+                "title.upper",
+                "title.upper().startswith",
+                "u.get",
+                "urllib.parse.unquote",
+                "urllib.parse.unquote(d).split"
+              ]
+            },
+            {
+              "name": "crossref_lookup",
+              "signature": "ref_string: str",
+              "async": false,
+              "calls": [
+                "(j or {}).get",
+                "(j or {}).get('message', {}).get",
+                "crossref_authors",
+                "crossref_year",
+                "litrev_get",
+                "m.get",
+                "urllib.parse.quote"
+              ]
+            },
+            {
+              "name": "search_openalex",
+              "signature": "query: str, n: int=10, filters: str=''",
+              "async": false,
+              "calls": [
+                "((loc.get('source') or {}) or {}).get",
+                "(j or {}).get",
+                "(w.get('doi') or '').replace",
+                "(w.get('open_access') or {}).get",
+                "litrev_openalex_get",
+                "loc.get",
+                "min",
+                "openalex_authors",
+                "out.append",
+                "urllib.parse.quote",
+                "w.get"
+              ]
+            },
+            {
+              "name": "expand_citations",
+              "signature": "doi: str, n_backward: int=50, n_forward: int=15",
+              "async": false,
+              "calls": [
+                "((work or {}).get('id') or '').rsplit",
+                "(j or {}).get",
+                "(w.get('doi') or '').replace",
+                "(work or {}).get",
+                "_list",
+                "_rows",
+                "litrev_openalex_get",
+                "min",
+                "openalex_authors",
+                "out.append",
+                "quote_doi_path",
+                "w.get"
+              ]
+            },
+            {
+              "name": "html_decode",
+              "signature": "s: str",
+              "async": false,
+              "calls": [
+                "s.replace"
+              ]
+            },
+            {
+              "name": "extract_dois",
+              "signature": "text: str",
+              "async": false,
+              "calls": [
+                "d.count",
+                "d.endswith",
+                "d.split",
+                "html_decode",
+                "len",
+                "m.split",
+                "out.add",
+                "re.findall",
+                "re.sub",
+                "set",
+                "sorted"
+              ]
+            },
+            {
+              "name": "style_pass",
+              "signature": "draft: str, model: str | None=None",
+              "async": false,
+              "calls": [
+                "any",
+                "draft.count",
+                "draft.split",
+                "issues.append",
+                "len",
+                "ln.split",
+                "ln.startswith",
+                "m.group",
+                "re.search"
+              ]
+            }
+          ],
+          "original_host_dependency": true
+        }
+      ],
+      "full_original_runtime_parity": false
+    },
+    {
+      "id": "managed-model-endpoints",
+      "description": "Configure local or remote model-service lifecycles.",
+      "resources": [
+        "SKILL.md"
+      ],
+      "execution_status": "reference_workflow_available",
+      "workflow_status": "Requires Codex orchestration and environment-specific validation",
+      "direct_helpers": [],
+      "dependencies": [
+        "Original host APIs need Codex-native adaptation for dependent operations"
+      ],
+      "model_requirements": null,
+      "python_modules": [],
+      "full_original_runtime_parity": false
+    },
+    {
+      "id": "openfold3",
+      "description": "Predict biomolecular complex structures with OpenFold3.",
+      "resources": [
+        "SKILL.md"
+      ],
+      "execution_status": "reference_workflow_available",
+      "workflow_status": "Requires Codex orchestration and environment-specific validation",
+      "direct_helpers": [],
+      "dependencies": [
+        "Model software and separately supplied weights",
+        "Suitable compute; GPU requirements vary by model"
+      ],
+      "model_requirements": {
+        "software": [
+          "openfold3",
+          "PyTorch"
+        ],
+        "weights": "OpenFold3 checkpoint and user-authorized download access"
+      },
+      "python_modules": [],
+      "full_original_runtime_parity": false
+    },
+    {
+      "id": "paper-narrative",
+      "description": "Organize the scientific argument, figure order and missing evidence.",
+      "resources": [
+        "SKILL.md",
+        "kernel.py"
+      ],
+      "execution_status": "verified_helpers_available",
+      "workflow_status": "Requires Codex orchestration and environment-specific validation",
+      "direct_helpers": [
+        "narrative_review_schema",
+        "paper_brief_schema"
+      ],
+      "dependencies": [
+        "Original host APIs need Codex-native adaptation for dependent operations"
+      ],
+      "model_requirements": null,
+      "python_modules": [
+        {
+          "resource": "kernel.py",
+          "sha256": "ceb1e0df448f2acfb677b68048b03833f4f4bb47fdcd6e0a36874d0100aaf090",
+          "imports": [
+            "host",
+            "json"
+          ],
+          "functions": [
+            {
+              "name": "pn_sdk",
+              "signature": "",
+              "async": false,
+              "calls": []
+            },
+            {
+              "name": "paper_brief_schema",
+              "signature": "",
+              "async": false,
+              "calls": []
+            },
+            {
+              "name": "derive_paper_brief",
+              "signature": "abstract_text, figure_claims, model=None",
+              "async": false,
+              "calls": [
+                "'\\n'.join",
+                "(r.get('tool_use') or {}).get",
+                "brief.setdefault",
+                "f.get",
+                "paper_brief_schema",
+                "pn_sdk",
+                "pn_sdk().llm",
+                "pn_sdk().reasoning_model",
+                "r.get"
+              ]
+            },
+            {
+              "name": "narrative_review_schema",
+              "signature": "",
+              "async": false,
+              "calls": []
+            },
+            {
+              "name": "narrative_review_task",
+              "signature": "brief, deck_vid, rules_vid",
+              "async": false,
+              "calls": [
+                "'\\n'.join",
+                "brief.get",
+                "f.get"
+              ]
+            }
+          ],
+          "original_host_dependency": true
+        }
+      ],
+      "full_original_runtime_parity": false
+    },
+    {
+      "id": "pdf-explore",
+      "description": "Read PDF pages, locate topics and organize structured extraction.",
+      "resources": [
+        "SKILL.md",
+        "kernel.py"
+      ],
+      "execution_status": "verified_helpers_available",
+      "workflow_status": "Requires Codex orchestration and environment-specific validation",
+      "direct_helpers": [
+        "pdf_guard_text",
+        "pdf_scan_cost",
+        "pdf_text_cap"
+      ],
+      "dependencies": [
+        "Original host APIs need Codex-native adaptation for dependent operations"
+      ],
+      "model_requirements": null,
+      "python_modules": [
+        {
+          "resource": "kernel.py",
+          "sha256": "7b0ffd988d17a8dcc89669c48ad0429ba21727365b149922fe3b5cb82b0880d6",
+          "imports": [
+            "PIL.Image",
+            "fitz",
+            "hashlib",
+            "host",
+            "os",
+            "pypdf",
+            "pypdfium2",
+            "re",
+            "secrets",
+            "unicodedata"
+          ],
+          "functions": [
+            {
+              "name": "pdf_sdk",
+              "signature": "",
+              "async": false,
+              "calls": []
+            },
+            {
+              "name": "pdf_check_fanout",
+              "signature": "parsed, fn",
+              "async": false,
+              "calls": [
+                "ValueError",
+                "len"
+              ]
+            },
+            {
+              "name": "pdf_text_cap",
+              "signature": "t, n",
+              "async": false,
+              "calls": [
+                "len"
+              ]
+            },
+            {
+              "name": "pdf_guard_text",
+              "signature": "text",
+              "async": false,
+              "calls": [
+                "re.sub"
+              ]
+            },
+            {
+              "name": "pdf_prompt_blocks",
+              "signature": "instructions",
+              "async": false,
+              "calls": [
+                "TypeError",
+                "instructions.rstrip",
+                "isinstance",
+                "secrets.token_hex",
+                "type"
+              ]
+            },
+            {
+              "name": "pdf_resolve",
+              "signature": "path_or_vid",
+              "async": false,
+              "calls": [
+                "TypeError",
+                "isinstance",
+                "os.path.exists",
+                "os.path.expanduser",
+                "path_or_vid.strip",
+                "pdf_sdk",
+                "pdf_sdk().artifact_path",
+                "re.fullmatch"
+              ]
+            },
+            {
+              "name": "pdf_pages",
+              "signature": "path, mode='auto', pages=None, dpi=100, cache=True",
+              "async": false,
+              "calls": [
+                "FileNotFoundError",
+                "ImportError",
+                "PdfReader",
+                "ValueError",
+                "abspath.encode",
+                "bmp.to_pil",
+                "bmp.to_pil().save",
+                "dict",
+                "doc.close",
+                "doc.load_page",
+                "fitz.Matrix",
+                "fitz.open",
+                "float",
+                "hasattr",
+                "hashlib.sha1",
+                "hashlib.sha1(abspath.encode()).hexdigest",
+                "int",
+                "len",
+                "list",
+                "os.getcwd",
+                "os.makedirs",
+                "os.path.abspath",
+                "os.path.exists",
+                "os.path.join",
+                "os.stat",
+                "out.append",
+                "pdf_pages",
+                "pdf_resolve",
+                "pdfium.PdfDocument",
+                "pg.get_pixmap",
+                "pg.get_text",
+                "pg.get_textpage",
+                "pg.render",
+                "pix.save",
+                "range",
+                "reader.pages[i].extract_text",
+                "set",
+                "sorted",
+                "str",
+                "str(e).lower",
+                "sum",
+                "tp.close",
+                "tp.get_text_bounded",
+                "tp.get_text_bounded().replace"
+              ]
+            },
+            {
+              "name": "pdf_map",
+              "signature": "path, prompt='Summarize this page in 2 sentences.', mode='auto', model=None, max_concurrency=8, max_tokens=256, dpi=100, pages=None, system=None",
+              "async": false,
+              "calls": [
+                "(r.get('text') or '').strip",
+                "TypeError",
+                "any",
+                "int",
+                "isinstance",
+                "len",
+                "out.append",
+                "p.get",
+                "p_open.format",
+                "pdf_check_fanout",
+                "pdf_guard_text",
+                "pdf_pages",
+                "pdf_prompt_blocks",
+                "pdf_sdk",
+                "pdf_sdk().llm",
+                "r.get",
+                "reqs.append",
+                "type",
+                "u.get",
+                "zip"
+              ]
+            },
+            {
+              "name": "pdf_outline",
+              "signature": "path, model=None, max_concurrency=8, force_llm=False, pages=None",
+              "async": false,
+              "calls": [
+                "''.join",
+                "''.join((c for c in _ud.normalize('NFKD', s) if c.isalnum())).lower",
+                "'\\n\\n'.join",
+                "(r.get('data') or {}).get",
+                "(r.get('tool_use') or {}).get",
+                "(r.get('tool_use') or {}).get('input', {}).get",
+                "ValueError",
+                "_norm",
+                "_ud.normalize",
+                "any",
+                "bm.get_dest",
+                "bm.get_title",
+                "by_pg.get",
+                "by_pg.get(e['page'], '').strip",
+                "c.isalnum",
+                "deduped.append",
+                "dest.get_index",
+                "doc.close",
+                "doc.get_toc",
+                "e.get",
+                "fitz.open",
+                "h.strip",
+                "int",
+                "isinstance",
+                "last_page.get",
+                "len",
+                "level_re.match",
+                "m.group",
+                "m.group(1).count",
+                "max",
+                "os.path.abspath",
+                "out.append",
+                "out.sort",
+                "p.get",
+                "p_open.format",
+                "pdf_extract",
+                "pdf_guard_text",
+                "pdf_pages",
+                "pdf_prompt_blocks",
+                "pdf_resolve",
+                "pdf_sdk",
+                "pdf_sdk().llm",
+                "pdf_text_cap",
+                "pdfium.PdfDocument",
+                "per_page.items",
+                "print",
+                "r.get",
+                "re.compile",
+                "seen.add",
+                "set",
+                "sorted",
+                "str",
+                "toc.append"
+              ]
+            },
+            {
+              "name": "pdf_scan",
+              "signature": "path, query, top_k=5, mode='auto', model=None, max_concurrency=8, threshold=None, dpi=100, pages=None, system=None, strategy='auto'",
+              "async": false,
+              "calls": [
+                "'\\n\\n'.join",
+                "(r.get('tool_use') or {}).get",
+                "(r.get('tool_use') or {}).get('input', {}).get",
+                "ValueError",
+                "any",
+                "by_page.get",
+                "float",
+                "hits.append",
+                "hits.sort",
+                "int",
+                "isinstance",
+                "len",
+                "max",
+                "min",
+                "p.get",
+                "p_open.format",
+                "pdf_check_fanout",
+                "pdf_guard_text",
+                "pdf_pages",
+                "pdf_prompt_blocks",
+                "pdf_sdk",
+                "pdf_sdk().llm",
+                "pdf_text_cap",
+                "query.strip",
+                "r.get",
+                "reqs.append",
+                "round",
+                "seen.add",
+                "set",
+                "str",
+                "tu.get",
+                "u.get",
+                "zip"
+              ]
+            },
+            {
+              "name": "pdf_extract",
+              "signature": "path, schema, pages=None, mode='auto', model=None, max_concurrency=8, dpi=100, system=None, max_tokens=2048",
+              "async": false,
+              "calls": [
+                "(r.get('tool_use') or {}).get",
+                "TypeError",
+                "any",
+                "int",
+                "isinstance",
+                "len",
+                "out.append",
+                "p.get",
+                "p_open.format",
+                "pdf_check_fanout",
+                "pdf_guard_text",
+                "pdf_pages",
+                "pdf_prompt_blocks",
+                "pdf_sdk",
+                "pdf_sdk().llm",
+                "r.get",
+                "reqs.append",
+                "schema.get",
+                "zip"
+              ]
+            },
+            {
+              "name": "pdf_scan_cost",
+              "signature": "results",
+              "async": false,
+              "calls": [
+                "(r.get('summary') or '').startswith",
+                "dict",
+                "int",
+                "isinstance",
+                "r.get",
+                "u.get"
+              ]
+            }
+          ],
+          "original_host_dependency": true
+        }
+      ],
+      "full_original_runtime_parity": false
+    },
+    {
+      "id": "product-self-knowledge",
+      "description": "Reference guidance about the original product ecosystem.",
+      "resources": [
+        "SKILL.md"
+      ],
+      "execution_status": "reference_workflow_available",
+      "workflow_status": "Requires Codex orchestration and environment-specific validation",
+      "direct_helpers": [],
+      "dependencies": [],
+      "model_requirements": null,
+      "python_modules": [],
+      "full_original_runtime_parity": false
+    },
+    {
+      "id": "proteinmpnn",
+      "description": "Design amino-acid sequences from protein backbones.",
+      "resources": [
+        "SKILL.md"
+      ],
+      "execution_status": "reference_workflow_available",
+      "workflow_status": "Requires Codex orchestration and environment-specific validation",
+      "direct_helpers": [],
+      "dependencies": [
+        "Model software and separately supplied weights",
+        "Suitable compute; GPU requirements vary by model"
+      ],
+      "model_requirements": {
+        "software": [
+          "ProteinMPNN",
+          "PyTorch",
+          "NumPy"
+        ],
+        "weights": "ProteinMPNN model weights"
+      },
+      "python_modules": [],
+      "full_original_runtime_parity": false
+    },
+    {
+      "id": "remote-compute-modal",
+      "description": "Submit jobs through a user-configured Modal account.",
+      "resources": [
+        "SKILL.md",
+        "env-setup.md",
+        "envs/chemistry_gpu.py",
+        "envs/esmfold2_gpu.py",
+        "envs/genomics_evo2_gpu.py",
+        "envs/md_openmm_gpu.py",
+        "envs/proteomics_boltz_gpu.py",
+        "envs/proteomics_gpu.py",
+        "envs/proteomics_jax_gpu.py",
+        "envs/proteomics_openfold_gpu.py",
+        "envs/proteomics_rfd_diffdock_gpu.py",
+        "envs/singlecell_gpu.py",
+        "provider.json",
+        "provider.py"
+      ],
+      "execution_status": "reference_workflow_available",
+      "workflow_status": "Requires Codex orchestration and environment-specific validation",
+      "direct_helpers": [],
+      "dependencies": [
+        "Original host APIs need Codex-native adaptation for dependent operations"
+      ],
+      "model_requirements": null,
+      "python_modules": [
+        {
+          "resource": "provider.py",
+          "sha256": "58b6648edae6a3234a9adc8c719a2fc44fcadf9df9dde3bfb1aea30ac46023f8",
+          "imports": [
+            "__future__",
+            "asyncio",
+            "collections.abc",
+            "grpclib.client",
+            "grpclib.exceptions",
+            "inspect",
+            "math",
+            "mock_modal",
+            "modal",
+            "modal._utils",
+            "modal._utils.async_utils",
+            "modal.client",
+            "modal_proto",
+            "operon_compute_provider",
+            "os",
+            "python_socks.async_.asyncio",
+            "re",
+            "ssl",
+            "sys",
+            "typing"
+          ],
+          "functions": [
+            {
+              "name": "_plain_str",
+              "signature": "x: Any",
+              "async": false,
+              "calls": [
+                "''.join",
+                "isinstance",
+                "str",
+                "type"
+              ]
+            },
+            {
+              "name": "_sanitize_repl_tags",
+              "signature": "tags: Any, self_id: str",
+              "async": false,
+              "calls": [
+                "ByocError",
+                "_plain_str",
+                "dict",
+                "isinstance",
+                "tags.items"
+              ]
+            },
+            {
+              "name": "_repl_identity_tags",
+              "signature": "",
+              "async": false,
+              "calls": [
+                "os.environ.get"
+              ]
+            },
+            {
+              "name": "_watchdog_cmd",
+              "signature": "work: str=WORK, idle_exit_s: float=IDLE_EXIT_S, poll_s: float=WATCHDOG_POLL_S, mark: str='/tmp/.operon_watchdog.mark'",
+              "async": false,
+              "calls": [
+                "math.ceil",
+                "max"
+              ]
+            }
+          ],
+          "original_host_dependency": true
+        }
+      ],
+      "full_original_runtime_parity": false
+    },
+    {
+      "id": "remote-compute-ssh",
+      "description": "Submit, monitor and collect jobs on SSH or Slurm hosts.",
+      "resources": [
+        "SKILL.md"
+      ],
+      "execution_status": "reference_workflow_available",
+      "workflow_status": "Requires Codex orchestration and environment-specific validation",
+      "direct_helpers": [],
+      "dependencies": [
+        "Original host APIs need Codex-native adaptation for dependent operations"
+      ],
+      "model_requirements": null,
+      "python_modules": [],
+      "full_original_runtime_parity": false
+    },
+    {
+      "id": "scgpt",
+      "description": "Single-cell embeddings and cell-annotation workflows.",
+      "resources": [
+        "SKILL.md"
+      ],
+      "execution_status": "reference_workflow_available",
+      "workflow_status": "Requires Codex orchestration and environment-specific validation",
+      "direct_helpers": [],
+      "dependencies": [
+        "Model software and separately supplied weights",
+        "Suitable compute; GPU requirements vary by model"
+      ],
+      "model_requirements": {
+        "software": [
+          "scgpt",
+          "PyTorch",
+          "AnnData"
+        ],
+        "weights": "args.json, best_model.pt and gene vocabulary for the chosen checkpoint"
+      },
+      "python_modules": [],
+      "full_original_runtime_parity": false
+    },
+    {
+      "id": "scvi-tools",
+      "description": "Probabilistic single-cell integration, annotation and expression analysis.",
+      "resources": [
+        "SKILL.md",
+        "kernel.py"
+      ],
+      "execution_status": "reference_workflow_available",
+      "workflow_status": "Requires Codex orchestration and environment-specific validation",
+      "direct_helpers": [],
+      "dependencies": [
+        "Model software and separately supplied weights",
+        "Suitable compute; GPU requirements vary by model"
+      ],
+      "model_requirements": {
+        "software": [
+          "scvi-tools",
+          "PyTorch",
+          "AnnData"
+        ],
+        "weights": "Train on supplied data or provide a compatible trained model"
+      },
+      "python_modules": [
+        {
+          "resource": "kernel.py",
+          "sha256": "4abd8a39ac92ef75222bc5b57f80d7bd0f00b6899d58863c2311ef0eadfcb6c4",
+          "imports": [
+            "numpy",
+            "pandas"
+          ],
+          "functions": [
+            {
+              "name": "h5ad_safe_obs",
+              "signature": "df",
+              "async": false,
+              "calls": [
+                "df.copy",
+                "mask.to_numpy",
+                "np.asarray",
+                "np.asarray(out.index, dtype=object).astype",
+                "out[c].astype",
+                "out[c].astype(object).where",
+                "out[c].notna",
+                "out[c][mask].astype",
+                "pd.Categorical",
+                "pd.Index",
+                "str"
+              ]
+            }
+          ],
+          "original_host_dependency": false
+        }
+      ],
+      "full_original_runtime_parity": false
+    },
+    {
+      "id": "self-awareness",
+      "description": "Original application session, execution and artifact introspection.",
+      "resources": [
+        "SKILL.md"
+      ],
+      "execution_status": "reference_workflow_available",
+      "workflow_status": "Requires Codex orchestration and environment-specific validation",
+      "direct_helpers": [],
+      "dependencies": [
+        "Original host APIs need Codex-native adaptation for dependent operations"
+      ],
+      "model_requirements": null,
+      "python_modules": [],
+      "full_original_runtime_parity": false
+    },
+    {
+      "id": "skill-creator",
+      "description": "Create, evaluate and revise reusable agent skills.",
+      "resources": [
+        "SKILL.md",
+        "agents/analyzer.md",
+        "agents/comparator.md",
+        "agents/grader.md",
+        "eval-viewer/generate_review.py",
+        "references/schemas.md",
+        "scripts/__init__.py",
+        "scripts/aggregate_benchmark.py",
+        "scripts/generate_report.py",
+        "scripts/improve_description.py",
+        "scripts/package_skill.py",
+        "scripts/quick_validate.py",
+        "scripts/run_eval.py",
+        "scripts/run_loop.py",
+        "scripts/utils.py"
+      ],
+      "execution_status": "reference_workflow_available",
+      "workflow_status": "Requires Codex orchestration and environment-specific validation",
+      "direct_helpers": [],
+      "dependencies": [],
+      "model_requirements": null,
+      "python_modules": [],
+      "full_original_runtime_parity": false
+    },
+    {
+      "id": "solublempnn",
+      "description": "Backbone-conditioned protein sequence design with soluble-protein weights.",
+      "resources": [
+        "SKILL.md"
+      ],
+      "execution_status": "reference_workflow_available",
+      "workflow_status": "Requires Codex orchestration and environment-specific validation",
+      "direct_helpers": [],
+      "dependencies": [
+        "Model software and separately supplied weights",
+        "Suitable compute; GPU requirements vary by model"
+      ],
+      "model_requirements": {
+        "software": [
+          "ProteinMPNN",
+          "PyTorch",
+          "NumPy"
+        ],
+        "weights": "soluble_model_weights matching the selected model"
+      },
+      "python_modules": [],
+      "full_original_runtime_parity": false
+    },
+    {
+      "id": "using-model-endpoint",
+      "description": "Call a configured model's native inference API.",
+      "resources": [
+        "SKILL.md",
+        "provider.json",
+        "provider.py"
+      ],
+      "execution_status": "reference_workflow_available",
+      "workflow_status": "Requires Codex orchestration and environment-specific validation",
+      "direct_helpers": [],
+      "dependencies": [
+        "Original host APIs need Codex-native adaptation for dependent operations"
+      ],
+      "model_requirements": null,
+      "python_modules": [
+        {
+          "resource": "provider.py",
+          "sha256": "4508e5affd203575edd564398bf4c7bb12ddea75128488f2cdbb380ded8f2f1a",
+          "imports": [
+            "__future__",
+            "operon_compute_provider",
+            "os",
+            "re",
+            "typing"
+          ],
+          "functions": [],
+          "original_host_dependency": true
+        }
+      ],
+      "full_original_runtime_parity": false
+    }
+  ]
+}

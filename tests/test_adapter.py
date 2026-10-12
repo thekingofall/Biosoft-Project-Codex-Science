@@ -46,6 +46,11 @@ class AdapterTests(unittest.TestCase):
   os.environ['CODEX_HOME']=str(self.project/'codex')
   with patch.multiple(codex_science,PROJECT=self.project,BIO=self.bio),patch.object(sys,'argv',['codex-science','status']),redirect_stdout(StringIO()) as out:
    codex_science.main();x=json.loads(out.getvalue());self.assertIsNone(x['last_online_test_at']);self.assertEqual(x['online_tested_tools'],[])
+ def test_standalone_status_without_external_assets(self):
+  self.manifest.unlink()
+  os.environ['CODEX_HOME']=str(self.project/'codex')
+  with patch.multiple(codex_science,PROJECT=self.project,BIO=self.bio),patch.object(sys,'argv',['codex-science','status']),redirect_stdout(StringIO()) as out:
+   codex_science.main();x=json.loads(out.getvalue());self.assertEqual(x['tools'],0);self.assertIn('CODEX_SCIENCE_RELEASE',x['external_assets_error'])
  def test_missing_catalog_actionable(self):
   with patch.object(codex_science,'PROJECT',self.project),patch.object(sys,'argv',['codex-science','tools']),redirect_stderr(StringIO()) as err:
    with self.assertRaises(SystemExit) as failure:codex_science.main()

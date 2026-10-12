@@ -41,3 +41,5 @@ if (Test-Path -LiteralPath $legacyPath) {
         Write-Output 'Updated the skill entry from claude-science-codex to codex-science.'
     }
 }
+
+& (Join-Path $PSScriptRoot "install-workbench.ps1")

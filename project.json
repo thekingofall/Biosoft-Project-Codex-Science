@@ -1,9 +1,13 @@
 {
   "name": "Codex Science",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "skill": "codex-science",
   "mcp_server": "science-bio",
   "form": "Codex research toolkit",
   "connector_source": "Claude Science 0.1.60 local extracted distribution",
-  "source_path": "../0.1.60/extracted/asset-text/mcp-servers/bio-tools"
+  "source_path": "../0.1.60/extracted/asset-text/mcp-servers/bio-tools",
+  "mcp_servers": [
+    "science-bio",
+    "science-workbench"
+  ]
 }
